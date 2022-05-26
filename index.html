@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+      }
+      #app {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+      #innerContainer {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <canvas id="app"></canvas>
+      <div id="innerContainer">
+        <div style="width: 600px">
+          <canvas id="myChart" width="400" height="200"></canvas>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+    <script>
+      javascript: (function () {
+        var script = document.createElement("script");
+        script.onload = function () {
+          var stats = new Stats();
+          document.body.appendChild(stats.dom);
+          requestAnimationFrame(function loop() {
+            stats.update();
+            requestAnimationFrame(loop);
+          });
+        };
+        script.src = "//mrdoob.github.io/stats.js/build/stats.min.js";
+        document.head.appendChild(script);
+      })();
+    </script>
+  </body>
+</html>
