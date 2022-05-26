@@ -4,12 +4,17 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
+    "lint": "eslint . --ext .ts",
     "build": "tsc && vite build",
+    "serve": "npm run build && vite preview",
     "preview": "vite preview"
   },
   "devDependencies": {
     "@types/chart.js": "^2.9.37",
     "@types/three": "^0.140.0",
+    "@typescript-eslint/eslint-plugin": "^5.26.0",
+    "@typescript-eslint/parser": "^5.26.0",
+    "eslint": "^8.16.0",
     "typescript": "^4.5.4",
     "vite": "^2.9.9"
   },

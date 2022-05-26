@@ -1,8 +1,9 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import Chart from "chart.js/auto";
+import { Chart, registerables } from "chart.js";
+Chart.register(...registerables);
 
-let POVdata: Array<{ x: number; y: number }> = [];
+const POVdata: Array<{ x: number; y: number }> = [];
 
 const renderer = new THREE.WebGLRenderer({
   canvas: document.getElementById("app") as HTMLCanvasElement,
@@ -40,20 +41,6 @@ scene.add(plane);
 
 const canvas = <HTMLCanvasElement>document.getElementById("myChart");
 // canvas.style.display = "none";
-
-function getDownVertexPosition() {
-  const positionAttribute = plane.geometry.getAttribute("position");
-  const vertex = new THREE.Vector3();
-  for (let vertexIndex = 2; vertexIndex < 4; vertexIndex++) {
-    vertex.fromBufferAttribute(positionAttribute, vertexIndex);
-    vertex.add(plane.position);
-    if (vertexIndex == 2) {
-      // console.log(vertex);
-      RayCheck(vertex);
-    }
-  }
-  drawPOVchart();
-}
 
 function RayCheck(RayPosition: THREE.Vector3) {
   const direction = new THREE.Vector3(-1, 0, 0);
@@ -105,7 +92,12 @@ function drawPOVchart() {
   const plugin = {
     id: "custom_canvas_background_color",
     beforeDraw: (chart: Chart) => {
-      const ctx: CanvasRenderingContext2D = chart.canvas.getContext("2d")!;
+      let ctx: CanvasRenderingContext2D | null;
+      if (!(ctx = canvas.getContext("2d"))) {
+        throw new Error(
+          `2d context not supported or canvas already initialized`
+        );
+      }
       ctx.save();
       ctx.globalCompositeOperation = "destination-over";
       ctx.fillStyle = "grey";
@@ -134,7 +126,6 @@ function drawPOVchart() {
           min: -90,
           max: 90,
           ticks: {
-            // forces step size to be 50 units
             stepSize: 10,
           },
         },
@@ -142,7 +133,6 @@ function drawPOVchart() {
           min: 0,
           max: 90,
           ticks: {
-            // forces step size to be 50 units
             stepSize: 10,
           },
         },
@@ -150,6 +140,20 @@ function drawPOVchart() {
     },
   });
   chart.update();
+}
+
+function getDownVertexPosition() {
+  const positionAttribute = plane.geometry.getAttribute("position");
+  const vertex = new THREE.Vector3();
+  for (let vertexIndex = 2; vertexIndex < 4; vertexIndex++) {
+    vertex.fromBufferAttribute(positionAttribute, vertexIndex);
+    vertex.add(plane.position);
+    if (vertexIndex == 2) {
+      // console.log(vertex);
+      RayCheck(vertex);
+    }
+  }
+  drawPOVchart();
 }
 
 function animate() {
