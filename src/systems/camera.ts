@@ -1,7 +1,7 @@
-import { PerspectiveCamera, Vector3 } from 'three';
+import * as THREE from 'three';
 
 function createCamera() {
-  const camera = new PerspectiveCamera(
+  const camera = new THREE.PerspectiveCamera(
     60, // fov = Field Of View
     window.innerWidth / window.innerHeight, // aspect ratio
     0.01, // near clipping plane
@@ -10,7 +10,7 @@ function createCamera() {
 
   camera.position.y = 16;
   camera.position.z = 40;
-  camera.lookAt(new Vector3(0, 0, 0));
+  camera.lookAt(new THREE.Vector3(0, 0, 0));
 
   return camera;
 }

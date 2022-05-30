@@ -1,12 +1,12 @@
-import { PlaneGeometry, Mesh, MeshBasicMaterial, DoubleSide } from 'three';
+import * as THREE from 'three';
 
-function createWindow(facade: Mesh) {
-  const geometryPlane = new PlaneGeometry(1, 1);
-  const materialPlane = new MeshBasicMaterial({
+function createWindow(facade: THREE.Mesh) {
+  const geometryPlane = new THREE.PlaneGeometry(1, 1);
+  const materialPlane = new THREE.MeshBasicMaterial({
     color: 0xffff00,
-    side: DoubleSide,
+    side: THREE.DoubleSide,
   });
-  const plane = new Mesh(geometryPlane, materialPlane);
+  const plane = new THREE.Mesh(geometryPlane, materialPlane);
   plane.position.y = -1;
   plane.userData.draggable = true;
   plane.userData.name = 'window';

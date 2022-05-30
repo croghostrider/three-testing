@@ -8,7 +8,7 @@ import { createWindow } from './components/window';
 import { createCamera } from './systems/camera';
 import { createControls } from './systems/controls';
 import { createRenderer } from './systems/renderer';
-import { Raycaster, Vector2 } from 'three';
+import * as THREE from 'three';
 
 const camera = createCamera();
 const scene = createScene();
@@ -17,9 +17,9 @@ const gird = createGird();
 const buildings = createBuildings();
 const alignment = createFacade();
 const facade = drawFacade();
-const raycaster = new Raycaster(); // create once
-const clickMouse = new Vector2(); // create once
-const moveMouse = new Vector2(); // create once
+const raycaster = new THREE.Raycaster(); // create once
+const clickMouse = new THREE.Vector2(); // create once
+const moveMouse = new THREE.Vector2(); // create once
 const POVdata: Array<{ x: number; y: number }> = [];
 const chart = createChart(POVdata);
 let draggable: THREE.Object3D;
