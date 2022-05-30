@@ -8,10 +8,10 @@
     "plugin:@typescript-eslint/recommended"
   ],
   "rules": {
+    "@typescript-eslint/no-unused-vars": "off",
     "class-methods-use-this": "error",
     "complexity": ["warn", 10],
     "max-statements": ["warn", 30],
-    "no-empty-function": "error",
     "no-use-before-define": [
       "error",
       { "functions": true, "classes": true, "variables": true }
