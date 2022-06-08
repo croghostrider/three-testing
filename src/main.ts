@@ -176,9 +176,9 @@ window.addEventListener('click', (event) => {
   raycaster.setFromCamera(clickMouse, camera);
   const found = raycaster.intersectObjects(scene.children);
   if (found.length > 0) {
-    for (let i = 0; i < found.length; i++) {
-      if (found[i].object.userData.draggable) {
-        draggable = found[i].object;
+    for (const x of found) {
+      if (x.object.userData.draggable) {
+        draggable = x.object;
         console.log('found draggable', draggable.userData.name);
         for (let i2 = 0, l = scene.children.length; i2 < l; i2++) {
           if (!scene.children[i2].userData.isRay) continue;
@@ -201,9 +201,9 @@ function dragObject() {
   if (draggable != null) {
     const found = intersect(moveMouse);
     if (found.length > 0) {
-      for (let i = 0; i < found.length; i++) {
-        if (!found[i].object.userData.ground) continue;
-        const target = facade.worldToLocal(found[i].point);
+      for (const x of found) {
+        if (!x.object.userData.ground) continue;
+        const target = facade.worldToLocal(x.point);
         draggable.position.x = target.x;
         draggable.position.y = target.y;
       }
