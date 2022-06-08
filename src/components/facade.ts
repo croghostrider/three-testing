@@ -8,7 +8,7 @@ function createFacade() {
     color: 0x0000ff,
   });
 
-  //draw the line for visual reference
+  // draw the line for visual reference
   const geometryPoints = [];
   geometryPoints.push(p0, p1);
   const geometry = new THREE.BufferGeometry().setFromPoints(geometryPoints);

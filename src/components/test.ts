@@ -6,7 +6,7 @@ function createBuildings2(scene: THREE.Scene) {
 
   gltfLoader.load(
     'assets/prime2.glb',
-    function (gltf) {
+    (gltf) => {
       gltf.scene.scale.set(100, 100, 100);
       scene.add(gltf.scene);
     },

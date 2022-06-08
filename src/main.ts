@@ -99,13 +99,13 @@ window.addEventListener('keydown', (event) => {
   }
 });
 
-window.addEventListener('keyup', function (event) {
+window.addEventListener('keyup', (event) => {
   if (event.key === 'Control') {
     ctrlDown = false;
     controls.enabled = true;
     renderer.domElement.style.cursor = 'pointer';
     if (drawingLine) {
-      //delete the last line because it wasn't committed
+      // delete the last line because it wasn't committed
       scene.remove(line);
       scene.remove(measurementLabels[lineId]);
       drawingLine = false;
@@ -119,7 +119,7 @@ function drawLine() {
     intersects = raycaster.intersectObjects(scene.children, true);
     if (intersects.length > 0) {
       if (!drawingLine) {
-        //start the line
+        // start the line
         const points = [];
         points.push(intersects[0].point);
         points.push(intersects[0].point.clone());
@@ -147,7 +147,7 @@ function drawLine() {
         scene.add(measurementLabels[lineId]);
         drawingLine = true;
       } else {
-        //finish the line
+        // finish the line
         const positions = line.geometry.attributes.position.array as number[];
         positions[1] = 10;
         positions[3] = intersects[0].point.x;

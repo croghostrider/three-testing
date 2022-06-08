@@ -16,6 +16,8 @@
     "@typescript-eslint/array-type": "error",
     "@typescript-eslint/prefer-for-of": "warn",
     "class-methods-use-this": "error",
+    "prefer-arrow-callback": "error",
+    "eqeqeq": [2, "smart"],
     "complexity": ["warn", 10],
     "max-statements": ["warn", 30],
     "no-use-before-define": ["error", { "functions": true, "classes": true, "variables": true }]

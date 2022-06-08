@@ -29,7 +29,7 @@ function RayCheck(
         scene.add(arrowHelper);
          */
       if (intersects.length !== 0) {
-        //console.log(intersects[0].point);
+        // console.log(intersects[0].point);
         POVdata.push({ x: i2 - 90, y: i });
         points.push(RayPosition);
         points.push(intersects[0].point);
@@ -71,7 +71,7 @@ function createRays(
     vertex.fromBufferAttribute(positionAttribute, vertexIndex);
     vertex.applyQuaternion(worldRoatation);
     vertex.add(position);
-    if (vertexIndex == 2) {
+    if (vertexIndex === 2) {
       // console.log(vertex);
       RayCheck(vertex, directionLeft, windowSector.up, raycaster, detectObject, POVdata, scene);
     }
