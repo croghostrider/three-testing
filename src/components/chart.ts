@@ -1,7 +1,7 @@
 import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
 
-function createChart(POVdata: Array<{ x: number; y: number }>) {
+function createChart(POVdata: { x: number; y: number }[]) {
   const canvas = <HTMLCanvasElement>document.getElementById('myChart');
   // canvas.style.display = "none";
   const plugin = {

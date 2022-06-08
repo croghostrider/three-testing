@@ -13,13 +13,12 @@
   ],
   "rules": {
     "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/array-type": "error",
+    "@typescript-eslint/prefer-for-of": "warn",
     "class-methods-use-this": "error",
     "complexity": ["warn", 10],
     "max-statements": ["warn", 30],
-    "no-use-before-define": [
-      "error",
-      { "functions": true, "classes": true, "variables": true }
-    ]
+    "no-use-before-define": ["error", { "functions": true, "classes": true, "variables": true }]
   },
   "parserOptions": {
     "project": "./tsconfig.json"

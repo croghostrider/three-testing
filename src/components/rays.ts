@@ -6,7 +6,7 @@ function RayCheck(
   upDirection: THREE.Vector3,
   raycaster: THREE.Raycaster,
   detectObject: THREE.Object3D,
-  POVdata: Array<{ x: number; y: number }>,
+  POVdata: { x: number; y: number }[],
   scene: THREE.Scene,
 ) {
   const direction = startDirection.clone();
@@ -48,7 +48,7 @@ function RayCheck(
 
 function createRays(
   windowSector: THREE.Mesh,
-  POVdata: Array<{ x: number; y: number }>,
+  POVdata: { x: number; y: number }[],
   raycaster: THREE.Raycaster,
   detectObject: THREE.Object3D,
   scene: THREE.Scene,

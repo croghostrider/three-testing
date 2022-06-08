@@ -23,7 +23,7 @@ const facade = drawFacade();
 const raycaster = new THREE.Raycaster(); // create once
 const clickMouse = new THREE.Vector2(); // create once
 const moveMouse = new THREE.Vector2(); // create once
-const POVdata: Array<{ x: number; y: number }> = [];
+const POVdata: { x: number; y: number }[] = [];
 const chart = createChart(POVdata);
 const controls = createControls(camera, renderer.domElement);
 let draggable: THREE.Object3D;
@@ -71,7 +71,7 @@ window.addEventListener('mousemove', (event) => {
     raycaster.setFromCamera(moveMouse, camera);
     intersects = raycaster.intersectObjects(scene.children, false);
     if (intersects.length > 0) {
-      const positions = line.geometry.attributes.position.array as Array<number>;
+      const positions = line.geometry.attributes.position.array as number[];
       const v0 = new THREE.Vector3(positions[0], positions[1], positions[2]);
       const v1 = new THREE.Vector3(
         intersects[0].point.x,
@@ -148,7 +148,7 @@ function drawLine() {
         drawingLine = true;
       } else {
         //finish the line
-        const positions = line.geometry.attributes.position.array as Array<number>;
+        const positions = line.geometry.attributes.position.array as number[];
         positions[1] = 10;
         positions[3] = intersects[0].point.x;
         positions[4] = 10; // TODO: remove
